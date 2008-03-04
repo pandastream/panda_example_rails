@@ -1,0 +1,7 @@
+<% form_for :video, @video, :url => { :action => "create" } do |f| %>
+  <p>
+    <label>Title</label>
+    <%= f.text_field :title %>
+  </p>
+  <%= submit_tag 'Next step: upload video' %>
+<% end %>
