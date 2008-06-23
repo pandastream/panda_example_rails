@@ -59,5 +59,6 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
-require 'panda'
+# require 'panda'
+require 'panda_new'
 Panda.account_key = "5ff26a80-15e8-012b-b412-404043cf913d"
