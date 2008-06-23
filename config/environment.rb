@@ -61,4 +61,7 @@ end
 # Include your application configuration below
 # require 'panda'
 require 'panda_new'
-Panda.account_key = "5ff26a80-15e8-012b-b412-404043cf913d"
+Panda.account_key = "f9e69730-16fd-012b-731d-001ec2b5c0e1"
+Panda.api_domain = "localhost"
+Panda.api_port = 4000
+VIDEOS_DOMAIN = "videos.pandastream.com"
