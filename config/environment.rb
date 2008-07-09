@@ -59,9 +59,4 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
-# require 'panda'
-require 'panda_new'
-Panda.account_key = "f9e69730-16fd-012b-731d-001ec2b5c0e1"
-Panda.api_domain = "localhost"
-Panda.api_port = 4000
-VIDEOS_DOMAIN = "videos.pandastream.com"
+require 'panda_config'

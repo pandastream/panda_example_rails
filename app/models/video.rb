@@ -16,9 +16,7 @@ class Video < ActiveRecord::Base
   end
   
   def update_panda_status(panda_video)
-    if encoding = panda_video.encodings.find { |e| 
-        e.profile_title == "MP4 SD" and e.status == 'success'
-      }
+    if encoding = panda_video.find_encoding("Flash h264 HI")
       self.filename = encoding.filename
       self.original_filename = encoding.original_filename
       self.screenshot = encoding.screenshot
@@ -26,7 +24,7 @@ class Video < ActiveRecord::Base
       self.duration = encoding.duration
       self.width = encoding.width
       self.height = encoding.height
-      save
+      self.save
     end
   end
 end
