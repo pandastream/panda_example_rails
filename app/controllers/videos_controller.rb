@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @panda_video = Panda::Video.find(@video.panda_id)
-    @video.update_panda_status(@panda_video)# if RAILS_ENV == "development"
+    # @video.update_panda_status(@panda_video) if RAILS_ENV == "development"
   end
   
   def new
@@ -25,10 +25,14 @@ class VideosController < ApplicationController
     @upload_form_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@video.panda_id}/form)
   end
   
+  def done
+    @video = Video.find_by_panda_id(params[:id])
+  end
+  
   def status
     @video = Video.find_by_panda_id(params[:id])
     @panda_video = Panda::Video.new(params[:video])
     @video.update_panda_status(@panda_video)
-    render :text => ''
+    render :text => 'ok'
   end
 end

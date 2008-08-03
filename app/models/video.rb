@@ -15,8 +15,12 @@ class Video < ActiveRecord::Base
     "http://#{VIDEOS_DOMAIN}/#{self.thumbnail}"
   end
   
+  def encoded?
+    !self.filename.blank?
+  end
+  
   def update_panda_status(panda_video)
-    if encoding = panda_video.find_encoding("Flash h264 HI")
+    if encoding = panda_video.find_encoding("Flash video SD")
       self.filename = encoding.filename
       self.original_filename = encoding.original_filename
       self.screenshot = encoding.screenshot

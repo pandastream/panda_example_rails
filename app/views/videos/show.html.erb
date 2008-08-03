@@ -1,3 +1,8 @@
 <h2><%= @video.title %></h2>
 
-<%= @video.embed_html %>
+<% if @video.encoded? %>
+  <%= @video.embed_html %>
+
+<% else %>
+  <p>Your video is currently encoded and will appear here when it's complete.</p>
+<% end %>
