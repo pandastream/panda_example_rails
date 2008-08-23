@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @panda_video = Panda::Video.find(@video.panda_id)
-    # @video.update_panda_status(@panda_video) if RAILS_ENV == "development"
+    @video.update_panda_status(@panda_video) if RAILS_ENV == "development"
   end
   
   def new
