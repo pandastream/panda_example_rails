@@ -31,7 +31,7 @@ class VideosController < ApplicationController
   
   def status
     @video = Video.find_by_panda_id(params[:id])
-    @panda_video = Panda::Video.new(params[:video])
+    @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
     @video.update_panda_status(@panda_video)
     render :text => 'ok'
   end

@@ -1,4 +1,6 @@
-Panda.account_key = "10299730-16fd-012b-731d-001ec2b53928"
-Panda.api_domain = "pandaapp.mysite.com"
+PANDA_ENCODING = "Flash video SD"
+VIDEOS_DOMAIN = "s3.amazonaws.com/myvideosbucket"
+
+Panda.account_key = "PANDA API KEY"
+Panda.api_domain = "ec2-000-000-000-000.compute-1.amazonaws.com"
 Panda.api_port = 80
-VIDEOS_DOMAIN = "s3.amazonaws.com/videosbucket"

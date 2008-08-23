@@ -8,11 +8,11 @@ class Video < ActiveRecord::Base
   end
   
   def screenshot_url
-    "http://#{VIDEOS_DOMAIN}/#{self.screenshot}"
+    "#{self.url}.jpg"
   end
   
   def thumbnail_url
-    "http://#{VIDEOS_DOMAIN}/#{self.thumbnail}"
+    "#{self.url}_thumb.jpg"
   end
   
   def encoded?
@@ -20,15 +20,17 @@ class Video < ActiveRecord::Base
   end
   
   def update_panda_status(panda_video)
-    if encoding = panda_video.find_encoding("Flash video SD")
-      self.filename = encoding.filename
-      self.original_filename = encoding.original_filename
-      self.screenshot = encoding.screenshot
-      self.thumbnail = encoding.thumbnail
-      self.duration = encoding.duration
-      self.width = encoding.width
-      self.height = encoding.height
-      self.save
+    if encoding = panda_video.encoding_for_profile(PANDA_ENCODING)
+      if encoding.status == 'success'
+        self.filename = encoding.filename
+        self.original_filename = encoding.original_filename
+        self.screenshot = encoding.screenshot
+        self.thumbnail = encoding.thumbnail
+        self.duration = encoding.duration
+        self.width = encoding.width
+        self.height = encoding.height
+        self.save
+      end
     end
   end
 end
