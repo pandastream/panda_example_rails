@@ -20,7 +20,7 @@ class Video < ActiveRecord::Base
   end
   
   def update_panda_status(panda_video)
-    if encoding = panda_video.encoding_for_profile(PANDA_ENCODING)
+    if encoding = panda_video.find_encoding(PANDA_ENCODING)
       if encoding.status == 'success'
         self.filename = encoding.filename
         self.original_filename = encoding.original_filename
