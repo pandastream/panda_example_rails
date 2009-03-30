@@ -23,6 +23,7 @@ class VideosController < ApplicationController
   def upload
     @video = Video.find(params[:id])
     @upload_form_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@video.panda_id}/form)
+    @upload_dest_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@video.panda_id}/upload)
   end
   
   def done

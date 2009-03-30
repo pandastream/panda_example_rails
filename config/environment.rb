@@ -60,4 +60,4 @@ end
 
 # Include your application configuration below
 require 'panda'
-require 'panda_config'
+require 'config/panda_config'
