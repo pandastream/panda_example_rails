@@ -28,6 +28,7 @@ class VideosController < ApplicationController
   
   def done
     @video = Video.find_by_panda_id(params[:id])
+    render :layout => false
   end
   
   def status
