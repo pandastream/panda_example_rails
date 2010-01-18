@@ -1,40 +1,52 @@
 class VideosController < ApplicationController
-  # List videos and their current state
-  def index
-    @videos = Video.find(:all)
+  ENCODINGS_TO_DISPLAY = ['Flash FLV (Medium)', 'iPhone stream (Medium)']
+    
+    
+  def new
   end
   
   def show
-    @video = Video.find(params[:id])
-    @panda_video = Panda::Video.find(@video.panda_id)
-    @video.update_panda_status(@panda_video) if RAILS_ENV == "development"
+    video_json = Panda.get("/videos/#{params[:id]}.json")
+    encodings_json = Panda.get("/videos/#{params[:id]}/encodings.json")
+    profiles_json = Panda.get("/profiles.json")
+    
+    respond_to do |r|
+      r.html {
+        @video = JSON.parse(video_json)
+        @encodings = JSON.parse(encodings_json)
+        @profiles = JSON.parse(profiles_json)
+        @encodings = encodings_for_profiles(@profiles, @encodings, ENCODINGS_TO_DISPLAY)
+      }
+      r.json {
+        render :json => "({video: #{video_json}, encodings: #{encodings_json} })"
+      }
+    end
   end
   
-  def new
-    @video = Video.new
+  def index
+    @videos = JSON.parse(Panda.get("/videos.json"))
   end
   
   def create
-    @panda_video = Panda::Video.create
-    @video = Video.create(params[:video].merge({:panda_id => @panda_video.id}))
-    redirect_to :action => "upload", :id => @video.id
+    @video = JSON.parse(Panda.post("/videos.json", {:source_url => params[:source_url], :profiles => params[:profiles]}))
+    redirect_to :action => :processing, :id => @video['id']
   end
   
-  def upload
-    @video = Video.find(params[:id])
-    @upload_form_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@video.panda_id}/form)
-    @upload_dest_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@video.panda_id}/upload)
+  def processing
+    
   end
   
-  def done
-    @video = Video.find_by_panda_id(params[:id])
-    render :layout => false
-  end
+  private
   
-  def status
-    @video = Video.find_by_panda_id(params[:id])
-    @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
-    @video.update_panda_status(@panda_video)
-    render :text => 'ok'
+  def encodings_for_profiles(profiles, encodings, profile_tiles)
+    encodings_for_profiles = []
+    profile_tiles.each do |title|
+      profile = profiles.find {|p| p['title'] == title }
+      if profile
+        encoding = encodings.find {|e| e['profile_id'] == profile['id'] }
+        encodings_for_profiles << encoding if encoding
+      end
+    end
+    encodings_for_profiles
   end
 end

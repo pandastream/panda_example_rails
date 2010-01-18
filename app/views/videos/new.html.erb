@@ -1,7 +1,24 @@
-<% form_for :video, @video, :url => { :action => "create" } do |f| %>
+<h1>New video</h1>
+
+<% form_tag(videos_path) do |f| %>
+
   <p>
-    <label>Title</label>
-    <%= f.text_field :title %>
+    <%= label_tag :source_url %><br />
+    <%= text_field_tag :source_url, "http://s3.amazonaws.com/panda-cloud-test-videos/panda.mp4", :size => 60 %>
   </p>
-  <%= submit_tag 'Next step: upload video' %>
+  <p>
+    <%= submit_tag 'Create' %>
+  </p>
 <% end %>
+
+<%= js_panda_uploader_init :server_data_id => "server_data_video", :submit_id => 'mysubmit', :state_update_url => "http://0.0.0.0:4444/$id/callback" %>
+
+<h2>Upload Video</h2>
+<form id="form1" action="" enctype="multipart/form-data" method="post">
+	<%= panda_uploader_file_selector %>
+	<%= panda_uploader_profile_selector %>
+	<input type="hidden" name="video" id="server_data_video" value="" />
+	<input type="submit" value="Upload video" id="mysubmit" />
+</form>
+
+<%= link_to 'Back', videos_path %>

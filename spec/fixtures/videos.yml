@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  source_url: MyString
+  encoded_url: MyString
+  status: MyString
+
+two:
+  source_url: MyString
+  encoded_url: MyString
+  status: MyString

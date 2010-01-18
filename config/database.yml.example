@@ -1,0 +1,11 @@
+development:
+  adapter: mysql
+  database: sushi_development
+
+test:
+  adapter: mysql
+  database: sushi_test
+
+production:
+  adapter: mysql
+  database: sushi_production

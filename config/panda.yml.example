@@ -1,0 +1,18 @@
+production:
+  access_key: e339e090-9a28-012c-bb3e-001ec2b5c0e1
+  secret_key: ed710840-9a28-012c-bb43-001ec2b5c0e1
+  api_host: localhost
+  api_port: 80
+
+development:
+  access_key: e339e090-9a28-012c-bb3e-001ec2b5c0e1
+  secret_key: ed710840-9a28-012c-bb43-001ec2b5c0e1
+  api_host: localhost
+  api_port: 4567
+
+test:
+  access_key: e339e090-9a28-012c-bb3e-001ec2b5c0e1
+  secret_key: ed710840-9a28-012c-bb43-001ec2b5c0e1
+  api_host: localhost
+  api_port: 4567
+  

@@ -1,0 +1,13 @@
+<% content_for(:head) do %>
+<script type="text/javascript" charset="utf-8">
+	$(function() {		
+		monitor_progress('<%= params[:id] %>');
+	});
+</script>
+<% end %>
+
+<h1>Processing video</h1>
+
+<div id="video_status">Getting status...</div>
+<div id="encoding_status">Getting status...</div>
+<div id="progress"><div id="bar"></div></div>

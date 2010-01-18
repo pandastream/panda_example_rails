@@ -1,5 +1,5 @@
-<ul>
-<% @videos.each do |video| %>
-    <li><%= link_to video.title, :action => "show", :id => video.id %></li>
+<% @videos.each do |video|%>
+<p>
+  <%= link_to video['id'], video_path(video['id']) %>
+</p>
 <% end %>
-</ul>
