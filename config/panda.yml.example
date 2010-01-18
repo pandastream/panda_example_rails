@@ -1,18 +1,13 @@
+# Obtain these keys by logging into your account at http://account.pandastream.com
 production:
-  access_key: e339e090-9a28-012c-bb3e-001ec2b5c0e1
-  secret_key: ed710840-9a28-012c-bb43-001ec2b5c0e1
-  api_host: localhost
-  api_port: 80
-
+  access_key: 
+  secret_key: 
+  cloud_id:
 development:
-  access_key: e339e090-9a28-012c-bb3e-001ec2b5c0e1
-  secret_key: ed710840-9a28-012c-bb43-001ec2b5c0e1
-  api_host: localhost
-  api_port: 4567
-
+  access_key: 
+  secret_key: 
+  cloud_id:
 test:
-  access_key: e339e090-9a28-012c-bb3e-001ec2b5c0e1
-  secret_key: ed710840-9a28-012c-bb43-001ec2b5c0e1
-  api_host: localhost
-  api_port: 4567
-  
+  access_key: 
+  secret_key: 
+  cloud_id: 

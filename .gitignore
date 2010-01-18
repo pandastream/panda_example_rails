@@ -5,4 +5,4 @@ uuid.state
 database.yml
 schema.rb
 tmp/*
-panda_config.rb
+config/panda.yml
