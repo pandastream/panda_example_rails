@@ -5,8 +5,8 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_sushi_session',
-  :secret      => 'c66914f97f95cf7bf3f420c8afa09dc07fd43e87a6a4f9da7d691fe51f1e2eeb3ecba0590b73e346862c641656367f8168ada7558138ae158b2bf815a18326bc'
+  :key         => '_panda_example_rails_walkthrough_session',
+  :secret      => '771574ec8803f8c2b92003bd08939051e5b5aeadc17f0a3415a2497486a31bdd71430026e5797e8bec5034c167862351af62363c32f1460cfe945108588932c7'
 }
 
 # Use the database for sessions instead of the cookie-based default,

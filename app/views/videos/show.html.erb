@@ -1,9 +1,15 @@
-<h1><%=h @video['original_filename'] %></h1>
-<div class="status"><%=h @video['status'] %></div>
-<% @encodings.each	do |encoding| %>
-	<% if encoding['status'] == 'success' %>
-		<%= embed_encoding(encoding) %>
-	<% else %>
-		<p class="error">Error processing flash video output.</p>
-	<% end %>
-<% end%>
+<h2><%= @video.title %></h2>
+<p><%= @video.panda_video_id %></p>
+<p><%= @video_data['status'] %></p>
+
+<div id='mediaspace'>This text will be replaced</div>
+ 
+<script type='text/javascript'>
+  var so = new SWFObject('/player.swf','mpl','320','240','9');
+  so.addParam('allowfullscreen','true');
+  so.addParam('allowscriptaccess','always');
+  so.addParam('wmode','opaque');
+  so.addVariable('file','<%= @video_url %>');
+  so.addVariable('image','<%= @screenshot_url %>');
+  so.write('mediaspace');
+</script>

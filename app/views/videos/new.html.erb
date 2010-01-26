@@ -1,24 +1,20 @@
-<h1>New video</h1>
+<%= js_panda_uploader_init %>
 
-<% form_tag(videos_path) do |f| %>
-
+<% form_for @video do |f| %>
   <p>
-    <%= label_tag :source_url %><br />
-    <%= text_field_tag :source_url, "http://s3.amazonaws.com/panda-cloud-test-videos/panda.mp4", :size => 60 %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </p>
+
   <p>
-    <%= submit_tag 'Create' %>
+    <label for="upload_button">File</label>
+    <span id="upload_button"></span>      
+    <input type="text" id="upload_filename" disabled="true" />
+    <div id="upload_progress"></div>
+  </p>
+
+  <p>
+    <input type="hidden" name="video[panda_video_id]" id="returned_video_id" value="" />
+    <input type="submit" value="Upload video" id="submit_button" />
   </p>
 <% end %>
-
-<%= js_panda_uploader_init :server_data_id => "server_data_video", :submit_id => 'mysubmit', :state_update_url => "http://0.0.0.0:4444/$id/callback" %>
-
-<h2>Upload Video</h2>
-<form id="form1" action="" enctype="multipart/form-data" method="post">
-	<%= panda_uploader_file_selector %>
-	<%= panda_uploader_profile_selector %>
-	<input type="hidden" name="video" id="server_data_video" value="" />
-	<input type="submit" value="Upload video" id="mysubmit" />
-</form>
-
-<%= link_to 'Back', videos_path %>
