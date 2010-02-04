@@ -1,5 +1,3 @@
-<%= js_panda_uploader_init %>
-
 <% form_for @video do |f| %>
   <p>
     <%= f.label :title %>
@@ -8,9 +6,9 @@
 
   <p>
     <label for="upload_button">File</label>
-    <span id="upload_button"></span>      
-    <input type="text" id="upload_filename" disabled="true" />
-    <div id="upload_progress"></div>
+    <span id="upload_button" class="panda_upload_button"></span>      
+    <input type="text" id="upload_filename"  class="panda_upload_filename" disabled="true" />
+    <div id="upload_progress"  class="panda_upload_progress" ></div>
   </p>
 
   <p>
@@ -18,3 +16,15 @@
     <input type="submit" value="Upload video" id="submit_button" />
   </p>
 <% end %>
+
+
+<script>
+
+<% auth_params = Panda.authentication_params('post', "/videos.json", {}) %>
+$("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, {
+  upload_button_id: "upload_button",
+  upload_progress_id: "upload_progress",
+  upload_filename_id: "upload_filename"
+})
+
+</script>
