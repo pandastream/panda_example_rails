@@ -2,7 +2,6 @@
 *.pid
 uuid.state
 .DS_Store
-database.yml
 schema.rb
 tmp/*
 config/panda.yml
