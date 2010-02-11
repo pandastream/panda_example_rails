@@ -5,3 +5,4 @@ uuid.state
 schema.rb
 tmp/*
 config/panda.yml
+*.sqlite3
