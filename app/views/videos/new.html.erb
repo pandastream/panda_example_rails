@@ -20,7 +20,7 @@
 
 <script>
 
-<% auth_params = Panda.authentication_params('post', "/videos.json", {}) %>
+<% auth_params = PANDA.authentication_params('post', "/videos.json", {}) %>
 $("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, {
   upload_button_id: "upload_button",
   upload_progress_id: "upload_progress",

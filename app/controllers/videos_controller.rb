@@ -3,9 +3,9 @@ class VideosController < ApplicationController
     s3_bucket_url = "http://s3.amazonaws.com/panda-test-videos/"
 
     @video = Video.find(params[:id])
-    @video_data =  JSON.parse(Panda.get("/videos/#{@video.panda_video_id}.json"))
+    @video_data =  JSON.parse(PANDA.get("/videos/#{@video.panda_video_id}.json"))
     # Find the url of the video from the first profile
-    @encoding_data = JSON.parse(Panda.get("/videos/#{@video.panda_video_id}/encodings.json")).first
+    @encoding_data = JSON.parse(PANDA.get("/videos/#{@video.panda_video_id}/encodings.json")).first
     
     @video_url = s3_bucket_url + @encoding_data['id'] + @encoding_data['extname']
     @screenshot_url = s3_bucket_url + @encoding_data['id'] + "_4.jpg"
