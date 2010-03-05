@@ -20,11 +20,12 @@
 
 <script>
 
-<% auth_params = PANDA.signed_params('post', "/videos.json", {}) %>
+<% auth_params = PANDA.signed_params('post', "/videos.json") %>
 $("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, {
   upload_button_id: "upload_button",
   upload_progress_id: "upload_progress",
-  upload_filename_id: "upload_filename"
+  upload_filename_id: "upload_filename",
+  api_url:"<%= PANDA.api_url %>",
 })
 
 </script>
