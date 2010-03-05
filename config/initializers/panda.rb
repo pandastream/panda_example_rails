@@ -1,7 +1,7 @@
 if ['production'].include?(RAILS_ENV)
   # if our application is deployed to heroku
   # we fetch variables from you environment
-  PANDA_CLOUD_CONFIG = {
+  PANDA_CONFIG = {
      "access_key"  =>  ENV['PANDASTREAM_ACCESS_KEY'],
      "secret_key"  =>  ENV['PANDASTREAM_SECRET_KEY'],
      "api_port"    =>  ENV['PANDASTREAM_CLOUD_ID']
