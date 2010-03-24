@@ -12,8 +12,8 @@
   </p>
 
   <p>
-    <input type="hidden" name="video[panda_video_id]" id="returned_video_id" value="" />
-    <input type="submit" value="Upload video" id="submit_button" />
+    <input type="hidden" name="video[panda_video_id]" id="returned_video_id" value="" /> 
+    <input type="submit" value="Upload video" id="submit_button" /> or <%=link_to ("cancel","#", { :id => "upload_cancel_button" })%>
   </p>
 <% end %>
 
@@ -24,7 +24,8 @@
 $("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, {
   upload_button_id: "upload_button",
   upload_progress_id: "upload_progress",
-  upload_filename_id: "upload_filename"
+  upload_filename_id: "upload_filename",
+  upload_cancel_button_id: "upload_cancel_button"
 })
 
 </script>
