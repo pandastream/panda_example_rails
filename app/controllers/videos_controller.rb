@@ -17,6 +17,8 @@ class VideosController < ApplicationController
     
     @pretty_printed_encodings = ''
     PP.pp(encodings, @pretty_printed_encodings)
+    
+    render 'show_flash' if params[:type] == "flash"
   end
   
   def new
