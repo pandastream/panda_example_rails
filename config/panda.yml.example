@@ -1,12 +1,8 @@
-production:
-  access_key: 
-  secret_key: 
-  cloud_id: 
 development:
-  access_key: 
-  secret_key: 
-  cloud_id: 
-test:
-  access_key: 
-  secret_key: 
-  cloud_id: 
+  panda:
+    api_host: api.pandastream.com
+    cloud_id:
+    access_key:
+    secret_key:
+  s3:
+    bucket:
