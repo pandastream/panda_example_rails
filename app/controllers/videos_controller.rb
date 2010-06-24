@@ -6,7 +6,7 @@ class VideosController < ApplicationController
     s3_bucket_url = "http://#{S3_CONFIG['bucket']}.s3.amazonaws.com"
 
     @video = Video.find(params[:id])
-    encodings = JSON.parse(PANDA.get("/videos/#{@video.panda_video_id}/encodings.json"))
+    encodings = PANDA.get("/videos/#{@video.panda_video_id}/encodings.json")
     encoding_data = encodings.find{|e| e['status'] == 'success' && e['extname'] == '.mp4' }
     if encoding_data
       @encoding = OpenStruct.new(encoding_data)
