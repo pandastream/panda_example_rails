@@ -1,3 +1,7 @@
-APP_CONFIG = YAML::load(File.open(File.join(File.dirname(__FILE__),'..', 'panda.yml')))[RAILS_ENV]
-PANDA = Panda.connect!(APP_CONFIG['panda'])
-S3_CONFIG = APP_CONFIG['s3']
+panda_config = YAML::load_file(File.join(File.dirname(__FILE__),"..", "panda.yml"))[RAILS_ENV]
+Panda.configure do |config|
+  config.api_host = panda_config["api_host"]
+  config.access_key = panda_config["access_key"]
+  config.secret_key = panda_config["secret_key"]
+  config.cloud_id = panda_config["cloud_id"]
+end 
