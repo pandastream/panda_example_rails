@@ -3,3 +3,10 @@
 <p>Here's the raw Panda information:</p>
 
 <p><%= h @video.panda.inspect %></p>
+
+<% if @video.panda.status == "success" %>
+  <video id="movie" width="320" height="240" preload="none" 
+    poster="<%= @video.panda.encodings.first.screenshots.first %>" controls>
+    <source src="<%= @video.panda.encodings.first.url %>" type="video/mp4">
+  </video>
+<% end %>
