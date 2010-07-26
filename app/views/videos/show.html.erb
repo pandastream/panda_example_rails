@@ -1,14 +1,5 @@
 <h2><%= @video.title %></h2>
 
-<% if @encoding %>
-<video id="movie" width="<%= @encoding.width %>" height="<%= @encoding.height %>" preload="none" poster="<%= @encoding.screenshot_url %>" controls>
-  <source src="<%= @encoding.url %>" type="video/mp4">
-</video>
-<% else %>
-<p>Your video has not been encoded yet. Please wait a few moments and <%= link_to 'refresh this page', video_path(@video) %>.</p>
-<% end %>
+<p>Here's the raw Panda information:</p>
 
-<h2>Encoding details</h2>
-<pre><%= @pretty_printed_encodings %></pre>
-
-<%= link_to 'Flash player version', video_path(@video, :type => "flash") %>
+<p><%= h @video.panda.inspect %></p>
