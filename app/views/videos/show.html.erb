@@ -5,8 +5,24 @@
 <p><%= h @video.panda.inspect %></p>
 
 <% if @video.panda.status == "success" %>
+  
+  <!-- HTML5 player -->
   <video id="movie" width="320" height="240" preload="none" 
     poster="<%= @video.panda.encodings.first.screenshots.first %>" controls>
     <source src="<%= @video.panda.encodings.first.url %>" type="video/mp4">
   </video>
+  
+  <!-- Flash player -->
+  <div id='flash_player'>Flash player will appear here</div>
+
+  <script type='text/javascript'>
+    var so = new SWFObject('/player.swf','mpl','320','240','9');
+    so.addParam('allowfullscreen','true');
+    so.addParam('allowscriptaccess','always');
+    so.addParam('wmode','opaque');
+    so.addVariable('file','<%= @video.panda.encodings.first.url %>');
+    so.addVariable('image','<%= @video.panda.encodings.first.screenshots.first %>');
+    so.write('flash_player');
+  </script>
+  
 <% end %>
