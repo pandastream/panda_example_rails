@@ -4,9 +4,14 @@ class Video < ActiveRecord::Base
   #associations and metadata.
   
   validates_presence_of :panda_video_id
-  
+
   #Provide access to the wrapped object
-  def panda
-    Panda::Video.id(panda_video_id)
+  def panda_video
+    @panda_video ||= Panda::Video.id(panda_video_id)
+  end
+
+  #Shortcut method
+  def panda_encodings
+    @encodings ||= Panda::Video.id(panda_video_id).encodings
   end
 end

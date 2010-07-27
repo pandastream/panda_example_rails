@@ -2,14 +2,14 @@
 
 <p>Here's the raw Panda information:</p>
 
-<p><%= h @video.panda.inspect %></p>
+<p><%= h @video.panda_video.inspect %></p>
 
-<% if @video.panda.status == "success" %>
+<% if @video.panda_video.status == "success" %>
   
   <!-- HTML5 player -->
   <video id="movie" width="320" height="240" preload="none" 
-    poster="<%= @video.panda.encodings.first.screenshots.first %>" controls>
-    <source src="<%= @video.panda.encodings.first.url %>" type="video/mp4">
+    poster="<%= @encoding.screenshots.first %>" controls>
+    <source src="<%= @encoding.url %>" type="video/mp4">
   </video>
   
   <!-- Flash player -->
@@ -20,8 +20,8 @@
     so.addParam('allowfullscreen','true');
     so.addParam('allowscriptaccess','always');
     so.addParam('wmode','opaque');
-    so.addVariable('file','<%= @video.panda.encodings.first.url %>');
-    so.addVariable('image','<%= @video.panda.encodings.first.screenshots.first %>');
+    so.addVariable('file','<%= @encoding.url %>');
+    so.addVariable('image','<%= @encoding.screenshots.first %>');
     so.write('flash_player');
   </script>
   
