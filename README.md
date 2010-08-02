@@ -1,12 +1,14 @@
 Panda example application, Rails
 =================================
 
-An example Rails web app that uses [**Panda**](http://beta.pandastream.com) to encode videos and play them on a page.
+An example Rails web app that uses [**Panda**](http://pandastream.com) to encode videos and embed them.
 
-Also available:
+The full tutorial is available here: <http://pandastream.com/docs/integrate_with_rails>
 
-* the simple [Panda gem](http://github.com/newbamboo/panda_gem) that this application is based on
-* the also simple [Panda jQuery plugin](http://github.com/newbamboo/panda_uploader) used to upload files
+See also:
+
+* Panda gem: <http://github.com/newbamboo/panda_gem/tree/superpanda>
+* Panda uploader: <http://github.com/newbamboo/panda_uploader/tree/html5>
 
 
 Setup
@@ -29,5 +31,3 @@ Finally, the video will appear embedded on the page. If you wish to try again wi
 
 Notes
 -----
-
-Uploads are done using [SWFUpload](http://www.swfupload.org/).
