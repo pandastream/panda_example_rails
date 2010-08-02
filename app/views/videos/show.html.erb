@@ -8,8 +8,8 @@
   
   <!-- HTML5 player -->
   <video id="movie" width="320" height="240" preload="none" 
-    poster="<%= @encoding.screenshots.first %>" controls>
-    <source src="<%= @encoding.url %>" type="video/mp4">
+    poster="<%= @h264_encoding.screenshots.first %>" controls>
+    <source src="<%= @h264_encoding.url %>" type="video/mp4">
   </video>
   
   <!-- Flash player -->
@@ -20,8 +20,8 @@
     so.addParam('allowfullscreen','true');
     so.addParam('allowscriptaccess','always');
     so.addParam('wmode','opaque');
-    so.addVariable('file','<%= @encoding.url %>');
-    so.addVariable('image','<%= @encoding.screenshots.first %>');
+    so.addVariable('file','<%= @h264_encoding.url %>');
+    so.addVariable('image','<%= @h264_encoding.screenshots.first %>');
     so.write('flash_player');
   </script>
   

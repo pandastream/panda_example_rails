@@ -9,9 +9,4 @@ class Video < ActiveRecord::Base
   def panda_video
     @panda_video ||= Panda::Video.id(panda_video_id)
   end
-
-  #Shortcut method
-  def panda_encodings
-    @encodings ||= Panda::Video.id(panda_video_id).encodings
-  end
 end

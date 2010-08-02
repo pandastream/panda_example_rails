@@ -1,4 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'videos', :action => 'new'
   map.resources :videos
+  map.root :controller => 'videos', :action => 'new'
 end
