@@ -4,24 +4,17 @@
     <%= f.text_field :title %>
   </p>
 
-  <p>
-    <label for="upload_button">File</label>
-    <span id="upload_button" class="panda_upload_button"></span>      
-    <input type="text" id="upload_filename"  class="panda_upload_filename" disabled="true" />
-    <div id="upload_progress"  class="panda_upload_progress"></div>
-  </p>
+  <!-- the control will appear next to this, and the video ID will be stored here after the upload -->
+  <input type="hidden" name="video[panda_video_id]" id="returned_video_id" />
 
-  <p>
-    <input type="hidden" name="video[panda_video_id]" id="returned_video_id" value="" />
-    <input type="submit" value="Upload video" id="submit_button" />
-  </p>
+  <!-- upload progress bar (optional) -->
+  <div id="upload_progress" class="panda_upload_progress"></div>
+    
+
+  <%= f.submit "Upload video" %>
 <% end %>
 
 <script>
   <% auth_params = Panda.signed_params('post', "/videos.json") %>
-  $("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, {
-    upload_button_id: "upload_button",
-    upload_progress_id: "upload_progress",
-    upload_filename_id: "upload_filename"
-  })
+  jQuery("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, { upload_progress_id: 'upload_progress' });
 </script>
