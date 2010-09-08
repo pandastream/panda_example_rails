@@ -16,5 +16,9 @@
 
 <script>
   <% auth_params = Panda.signed_params('post', "/videos.json") %>
-  jQuery("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, { upload_progress_id: 'upload_progress' });
+  jQuery("#returned_video_id").pandaUploader(<%= auth_params.to_json %>, {
+    // Uncomment the line below if your account is in the EU
+    // api_host: 'api.eu.pandastream.com',
+    upload_progress_id: 'upload_progress'
+  });
 </script>
