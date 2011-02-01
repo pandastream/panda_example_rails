@@ -7,14 +7,14 @@ The full tutorial is available here: <http://pandastream.com/docs/integrate_with
 
 See also:
 
-* Panda gem: <http://github.com/newbamboo/panda_gem/tree/superpanda>
-* Panda uploader: <http://github.com/newbamboo/panda_uploader/tree/html5>
+* Panda gem: <http://github.com/newbamboo/panda_gem/>
+* Panda uploader: <http://github.com/newbamboo/panda_uploader>
 
 
 Setup
 -----
 
-This application has been tested successfully with **Rails 2.3.5**.
+This application has been tested successfully with **Rails 3.0.3**.
 
 By default, Panda will encode your videos using the H.264 codec, playable with the HTML5 &lt;VIDEO&gt; tag. This example will use this to play your videos. Make sure you use a compatible browser to watch it.
 
