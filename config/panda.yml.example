@@ -15,4 +15,4 @@ test:
   api_host: 
   access_key: 
   secret_key: 
-  cloud_id: 
+  cloud_id:

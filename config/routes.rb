@@ -1,4 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :videos
-  map.root :controller => 'videos', :action => 'new'
+PandaExampleRails::Application.routes.draw do
+  resources :videos
+  root :to => "videos#new"
 end
