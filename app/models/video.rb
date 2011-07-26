@@ -7,6 +7,6 @@ class Video < ActiveRecord::Base
 
   #Provide access to the wrapped object
   def panda_video
-    @panda_video ||= Panda::Video.id(panda_video_id)
+    @panda_video ||= Panda::Video.find(panda_video_id)
   end
 end
