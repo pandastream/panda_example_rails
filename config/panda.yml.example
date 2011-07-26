@@ -4,13 +4,13 @@ production:
   secret_key: 
   cloud_id: 
   # Uncomment the line below if your account is in the EU
-  # api_host: api.eu.pandastream.com
+  # api_host: api-eu.pandastream.com
 development:
   access_key: 
   secret_key: 
   cloud_id: 
   # Uncomment the line below if your account is in the EU
-  # api_host: api.eu.pandastream.com
+  # api_host: api-eu.pandastream.com
 test:           
   api_host: 
   access_key: 
