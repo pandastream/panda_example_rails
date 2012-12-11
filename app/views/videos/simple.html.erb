@@ -1,0 +1,65 @@
+<% content_for :navbar do %>
+  <li class="active"><a href="/simple">Simple</a></li>
+  <li><a href="/advanced">Advanced</a></li>
+<% end %>
+
+<div class='span4'>
+  <%= form_for @video do |f| %>
+    <fieldset>
+      <legend>Upload a new video</legend>
+      
+      <label>Title</label>
+
+      <input type="text" name='video[title]' placeholder="Give a title">
+
+      <span class="help-block">Upload will start immediately after select</span>
+
+      <br/>
+
+      <input type="hidden" name="video[panda_video_id]" id="panda_video_id" />
+
+      <div class='progress progress-striped progress-success active'>
+        <span id="progress-bar" class='bar'></span>
+      </div>
+
+      <div class='btn-toolbar'>
+        <div id='browse-files' class='btn btn-primary btn-success'><span>Choose file</span></div>
+        <button id='cancel-button' class='btn btn-danger'>Cancel</button>
+      </div>
+
+      <div class="well well-large" id="drop-file">
+        Drop files here
+      </div>
+
+    </fieldset>
+
+  <% end %>
+</div>
+
+<script>
+
+$('#cancel-button').click(function(e){
+  uploader.cancel(uploader.getQueuedFiles()[0]);
+  e.preventDefault();
+})
+
+var uploader = panda.uploader.init({
+  'buttonId': 'browse-files',
+  'fileDropId': 'drop-file',
+  'progressBarId': 'progress-bar',
+  'onSuccess': function(file, data) {
+    $("#panda_video_id").val(data.id)
+  },
+  'onComplete': function(){
+    if($("#panda_video_id").val())
+      $("#new_video").submit();
+  },
+  'onError': function(file, data) {
+    console.log('error uploading ' + message );
+  },
+  'onCancel': function(file, data) {
+    uploader.setProgress(0);
+  }
+});
+
+</script>

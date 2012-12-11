@@ -1,33 +1,55 @@
+<% content_for :navbar do %>
+  <li><a href="/simple">Simple</a></li>
+  <li><a href="/advanced">Advanced</a></li>
+  <li class="active"><a href="#">Player</a></li>
+<% end %>
+
 <h2><%= @video.title %></h2>
 
 <p>Here's the raw Panda information:</p>
 
-<p>Input video: <%= h @original_video.inspect %></p>
-<p>Output H264: <%= h @h264_encoding.inspect %></p>
+<div class='span8'>
+
+<section>
+  <h4>Video Input: </h4>
+  <pre><%= h @original_video.inspect %></pre>
+</section>
+
+<section>
+  <h4>Video Output H264:</h4>
+  <pre><%= h @h264_encoding.inspect %></pre>
+</section>
 
 <% if @h264_encoding.success? %>
   
-  <p>HTML5 PLAYER</p>
+  <h3>HTML5 Player</h3>
   
   <!-- HTML5 player -->
   <video id="movie" width="<%= @h264_encoding.width %>" height="<%= @h264_encoding.height %>" preload="none" 
     poster="<%= @h264_encoding.screenshots.first %>" controls>
     <source src="<%= @h264_encoding.url %>" type="video/mp4">
   </video>
-  
-  <p>FLASH PLAYER</p>
-  
-  <!-- Flash player -->
-  <div id='flash_player'>Flash player will appear here</div>
 
-  <script type='text/javascript'>
-    var so = new SWFObject('/player.swf','mpl',"<%= @h264_encoding.width %>","<%= @h264_encoding.height %>",'9');
-    so.addParam('allowfullscreen','true');
-    so.addParam('allowscriptaccess','always');
-    so.addParam('wmode','opaque');
-    so.addVariable('file','<%= @h264_encoding.url %>');
-    so.addVariable('image','<%= @h264_encoding.screenshots.first %>');
-    so.write('flash_player');
-  </script>
-  
+  <h3>Thumbnails</h3>
+
+  <ul class="thumbnails">
+  <% @h264_encoding.screenshots.each do |src| %>
+    <li class="span3">
+      <a class="thumbnail" href="#">
+        <img src="<%= src %>"
+             style="width: <%= @h264_encoding.width %>; height: <%= @h264_encoding.height %>">
+      </a>
+    </li>
+  <% end %>
+  </ul>
+
+<% else %>
+
+<div class='progress progress-striped progress-success'>
+  <span id="progress-bar" class='bar' style="width: <%= @h264_encoding.encoding_progress.to_i %>%"><%= @h264_encoding.encoding_progress %> %</span>
+</div>
+
+The video is still processing, refresh the page in a few seconds.
 <% end %>
+
+</div>
