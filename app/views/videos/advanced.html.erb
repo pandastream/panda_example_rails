@@ -1,0 +1,162 @@
+<% content_for :navbar do %>
+  <li><a href="/simple">Simple</a></li>
+  <li class="active"><a href="/advanced">Advanced</a></li>
+<% end %>
+
+<div class='span8'>
+
+  <fieldset>
+    <legend>Upload a new video</legend>
+
+    <div>
+      <div class="row-fluid">
+        <div class="span10">Select a video file on your computer</div>
+        <div class="span2">
+          <div id='browse-files' class='btn btn-primary btn-success'><span>Choose file</span></div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped" id="upload-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+
+  </fieldset>
+
+  <button type="button" id="btn-upload" class='btn'>Upload</button>
+
+</div>
+
+<script>
+
+UploadTable = function(uploader) {
+  this.uploader = uploader;
+  this.holder_ = $("#upload-table");
+}
+
+UploadTable.prototype.add = function(file){
+  var fileRow = new UploadFileRow(uploader, file);
+
+  var dom = fileRow.draw()
+  dom.attr('id', "upload-"+file.id)
+
+  this.holder_.append(dom);
+
+  fileRow.attachEvents()
+}
+
+UploadTable.prototype.remove = function(file){
+  this.holder_.find("#upload-"+file.id).remove();
+}
+
+UploadFileRow = function(uploader, file) {
+  this.uploader_ = uploader
+  this.file_ = file
+}
+
+UploadFileRow.prototype.draw = function(){
+  var self = this;
+  
+  this.html = $("<tr>")
+        .append($("<td>", {'class': 'td-filename'}).html(this.file_.name))
+        .append($("<td>", {'class': 'td-progress'})
+          .append($("<div>", {'class': 'progress'})
+            .append($("<div>", {'class': 'bar', 'id': "progress-" + this.file_.id}))))
+        .append($("<td>", {'class': 'td-filesize'}).html(this.file_.size))
+        .append($("<td>", {'class': 'td-action'})
+          .append($("<button>", {'type': 'button', 'class': 'btn btn-danger btn-cancel'}).text('Cancel')))
+
+  return this.html;  
+}
+
+UploadFileRow.prototype.attachEvents = function(){
+  var self = this;
+
+  $(this.file_)
+    .on("start", function(event, progress){
+      self.html.find('.progress')
+        .addClass('progress-striped active');
+    })
+    .on("progress", function(event, progress){
+      self.html.find('.progress .bar')
+        .css({"width": progress + '%'})
+        .text(progress + "%");
+    })
+    .on("error", function(event, progress){
+      self.html.find('.progress')
+        .addClass('progress-danger')
+        .removeClass('active')
+        .find('.bar')
+          .css({"width": '1000%'})
+          .text(progress + "%");
+    })
+    .on("success", function(event, data){
+      self.html.find('.progress')
+        .addClass('progress-success')
+        .removeClass('active')
+        .find('.bar')
+          .css({"width": '1000%'})
+
+      self.html.find(".td-action")
+                .html($("<a>", {
+                  'type': 'button',
+                  'class': 'btn btn-info',
+                  'target': "_blank",
+                  'href': data["play_url"]}).text('Play'))
+    })
+
+  this.html.find(".btn-cancel").click(function(e){
+    self.uploader_.cancel(self.file_);
+    e.preventDefault();
+  })
+}
+
+$("#btn-upload").click(function(e){
+  uploader.setEnabled(false);
+  uploader.start()
+  e.preventDefault();
+})
+
+var uploader = panda.uploader.init({
+  'buttonId': 'browse-files',
+  'authorizeUrl': '/panda/authorize_upload_postprocess',
+  'autoStart': false,
+  'allowSelectMultipleFiles': true,
+  'onQueue': function(files) {
+    $.each(files, function(){
+      uploadTable.add(this);
+    })
+  },
+  'onStart': function(file, percent){
+    $(file).trigger('start');
+  },
+  'onProgress': function(file, percent) {
+    $(file).trigger("progress", percent)
+  },
+  'onSuccess': function(file, data) {
+    $(file).trigger('success', data);
+  },
+  'onComplete': function(file, data) {
+    uploader.setEnabled(true);
+  },
+  'onError': function(file, data) {
+    $(file).trigger('error');
+  },
+  'onCancel': function(file) {
+    uploadTable.remove(file)
+  },
+  'onPause': function(file) {
+    console.log('on paused', file);
+  }
+});
+
+var uploadTable = new UploadTable(uploader);
+
+</script>
