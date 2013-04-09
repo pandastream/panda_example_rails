@@ -14,7 +14,7 @@ See also:
 Setup
 -----
 
-This application has been tested successfully with **Rails 3.0.3**.
+This application has been tested successfully with **Rails 3.2.13**.
 
 By default, Panda will encode your videos using the H.264 codec, playable with the HTML5 &lt;VIDEO&gt; tag. This example will use this to play your videos. Make sure you use a compatible browser to watch it.
 
