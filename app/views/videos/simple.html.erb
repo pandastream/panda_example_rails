@@ -47,6 +47,11 @@ var uploader = panda.uploader.init({
   'buttonId': 'browse-files',
   'fileDropId': 'drop-file',
   'progressBarId': 'progress-bar',
+  'onQueue': function(files) {
+    $.each(files, function(i, file) {
+      uploader.setPayload(file, {'authenticity_token': "<%= form_authenticity_token %>"});
+    })
+  },
   'onSuccess': function(file, data) {
     $("#panda_video_id").val(data.id)
   },

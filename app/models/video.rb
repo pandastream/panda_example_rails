@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
   #class in order to get local storage, and so that we can add our own
   #associations and metadata.
   
+  attr_accessible :panda_video_id, :title
   validates_presence_of :panda_video_id
 
   #Provide access to the wrapped object

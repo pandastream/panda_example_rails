@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-PandaExampleRails::Application.config.secret_token = '1ea80a6e70c21689343f11099895cfa0cbdb1ad9d1af97bf1bb7b117e5b0e0cfdce58c159de0a8834b88defe838d6e89cb6dba6a0cf53455b9541072dc989aa4'
+PandaExampleRails::Application.config.secret_token = '4e3a13f92526ab56f6f5e781c5df1d5f17dbdfe94dbc0b59e7a6dc38b598cbc91b237f3b2837541d618298a7484d42d958c2ec5d069921d40938d917f2407af5'
