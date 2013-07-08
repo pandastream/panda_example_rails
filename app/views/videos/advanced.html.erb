@@ -89,20 +89,22 @@ UploadFileRow.prototype.attachEvents = function(){
         .css({"width": progress + '%'})
         .text(progress + "%");
     })
-    .on("error", function(event, progress){
+    .on("error", function(event, message){
       self.html.find('.progress')
         .addClass('progress-danger')
         .removeClass('active')
         .find('.bar')
-          .css({"width": '1000%'})
-          .text(progress + "%");
+          .css({"width": '100%'})
+
+      alert(message);
+
     })
     .on("success", function(event, data){
       self.html.find('.progress')
         .addClass('progress-success')
         .removeClass('active')
         .find('.bar')
-          .css({"width": '1000%'})
+          .css({"width": '100%'})
 
       self.html.find(".td-action")
                 .html($("<a>", {
@@ -148,7 +150,7 @@ var uploader = panda.uploader.init({
     uploader.setEnabled(true);
   },
   'onError': function(file, data) {
-    $(file).trigger('error');
+    $(file).trigger('error', data);
   },
   'onCancel': function(file) {
     uploadTable.remove(file)

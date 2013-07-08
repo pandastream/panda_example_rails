@@ -59,10 +59,10 @@ var uploader = panda.uploader.init({
     if($("#panda_video_id").val())
       $("#new_video").submit();
   },
-  'onError': function(file, data) {
-    console.log('error uploading ' + message );
+  'onError': function(file, message) {
+    alert(message);
   },
-  'onCancel': function(file, data) {
+  'onCancel': function(file) {
     uploader.setProgress(0);
   }
 });
