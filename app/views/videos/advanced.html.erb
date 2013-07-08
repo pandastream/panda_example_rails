@@ -130,8 +130,9 @@ var uploader = panda.uploader.init({
   'autoStart': false,
   'allowSelectMultipleFiles': true,
   'onQueue': function(files) {
-    $.each(files, function(){
+    $.each(files, function(i, file) {
       uploadTable.add(this);
+      uploader.setPayload(file, {'csrf': "<%= form_authenticity_token %>"});
     })
   },
   'onStart': function(file, percent){
