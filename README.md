@@ -7,7 +7,7 @@ The full tutorial is available here: <http://pandastream.com/docs/integrate_with
 
 See also:
 
-* Panda gem: <http://github.com/newbamboo/panda_gem/>
+* Panda gem: <http://github.com/pandastream/panda_gem/>
 * Panda uploader: <http://www.pandastream.com/docs/uploader>
 
 
